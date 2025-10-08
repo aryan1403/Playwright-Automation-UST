@@ -55,5 +55,16 @@ function table(num) {
 table(5)
 // hello(4, 5)
 
+function btnclicked() { 
+    const username = document.getElementById("uname").value.toString();
+    const pass = document.getElementById("pass").value.toString();
+
+    if(username && String(username).length > 2 && pass && String(pass).length > 5) {
+        alert("Login success")
+    } else {
+        alert("Username/Password is incorrect")
+    }
+}
+
 
 
