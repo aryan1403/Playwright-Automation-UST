@@ -14,4 +14,6 @@ test('Selectors examples', async ({ page }) => {
 
   // Role selector
   await page.locator('role=link[name="More information"]').click();
+
+  await page.screenshot({ path: 'selectors.png' });
 });
