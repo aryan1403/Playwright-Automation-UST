@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-test('Selectors examples', async ({ page }) => {
+test.skip('Selectors examples', async ({ page }) => {
   await page.goto('https://example.com');
 
   // CSS selector

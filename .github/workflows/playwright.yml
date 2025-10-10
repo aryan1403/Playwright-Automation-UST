@@ -1,13 +1,15 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ day3 ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ day3 ]
 jobs:
   test:
+    name: Run playwright test
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
