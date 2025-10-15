@@ -1,17 +1,26 @@
 {
   "name": "playwright",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "cucumber-js --config cucumber.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryan1403/Playwright-Automation-UST.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@playwright/test": "^1.56.0",
-    "@types/node": "^24.7.0"
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aryan1403/Playwright-Automation-UST/issues"
   },
-  "dependencies": {
+  "homepage": "https://github.com/aryan1403/Playwright-Automation-UST#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.2.0",
+    "chai": "^6.2.0",
     "playwright": "^1.56.0"
   }
 }
