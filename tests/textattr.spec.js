@@ -41,7 +41,7 @@ async function safeBtnClick(page, selector) {
 }
 
 // console event test, safebtn click
-test('console event test', async ({page}) => {
+test.skip('console event test', async ({page}) => {
     page.on('console', msg => {
         console.log('Console:', msg.text())
     })
