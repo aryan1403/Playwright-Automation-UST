@@ -5,10 +5,6 @@ pipeline {
         nodejs 'Node25'
     }
 
-    environment {
-        NODE_ENV = 'production'
-    }
-
     options {
         timestamps()
     }
