@@ -1,9 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/playwright:v1.49.0-jammy'
-            args '-u root:root'
-        }
+    agent any
+
+    tools {
+        nodejs 'Node25'
     }
 
     environment {
