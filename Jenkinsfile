@@ -1,42 +1,40 @@
 pipeline {
-    node {
-    // Choose the Jenkins agent (any node with Docker installed)
-    stage('Checkout') {
-        checkout scm
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run Playwright in Docker') {
+            steps {
+                // Run Playwright inside Docker container
+                sh '''
+                    docker run --rm -v $PWD:/work -w /work mcr.microsoft.com/playwright:v1.49.0-jammy bash -c "
+                    npm ci &&
+                    npx playwright install --with-deps &&
+                    npx playwright test --reporter=html
+                    "
+                '''
+            }
+        }
+
+        stage('Archive HTML Report') {
+            steps {
+                publishHTML([
+                    reportDir: 'playwright-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Playwright Test Report'
+                ])
+            }
+        }
     }
 
-    // Run inside Playwright Docker container
-    docker.image('mcr.microsoft.com/playwright:v1.49.0-jammy').inside('-u root:root') {
-
-        stage('Install Dependencies') {
-            echo 'Installing Node modules'
-            sh 'npm ci'
-        }
-
-        stage('Install Playwright Browsers') {
-            echo 'Installing Playwright browsers'
-            sh 'npx playwright install --with-deps'
-        }
-
-        stage('Run Playwright Tests') {
-            echo 'Running Playwright tests'
-            sh 'npx playwright test --reporter=html'
-        }
-
-        stage('Archive Test Report') {
-            echo 'Archiving HTML report'
-            publishHTML([
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright Test Report'
-            ])
+    post {
+        always {
+            cleanWs()
         }
     }
-
-    // Cleanup workspace
-    stage('Cleanup') {
-        cleanWs()
-    }
-}
-
 }
