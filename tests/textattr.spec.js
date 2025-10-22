@@ -1,5 +1,9 @@
 const {test, expect} = require("playwright/test");
 
+test.use({
+    video: { mode: 'off', size: { width: 1280, height: 720 } }
+})
+
 // text assertions, attribute assertions, network request/response event, soft assertions
 test('text assertion test', async ({page}) => {
     page.on('request', req => console.log('Incoming', req.url()))
@@ -8,6 +12,8 @@ test('text assertion test', async ({page}) => {
     await page.goto('https://example.com')
     const heading = page.locator('h1')
     await expect.soft(heading).toHaveText(/Example/)
+
+    //await page.pause();
     const learnmore = page.locator('a')
     await expect(learnmore).toHaveAttribute('href', 'https://iana.org/domains/example')
     console.log('continues')   
