@@ -1,3 +1,5 @@
 
+const person = new Object();
 
-export const name: string = "Aaryan";
+//console.log(Object.prototype.__proto__);
+

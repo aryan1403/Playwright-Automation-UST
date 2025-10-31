@@ -23,6 +23,9 @@ class DataStorage<T> {
     }
 }
 
+
+
+
 const textStorage = new DataStorage<string>();
 textStorage.addItem('MacBook');
 textStorage.addItem('Laptop');
